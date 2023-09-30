@@ -1,16 +1,28 @@
 {% extends "enquete/base.html" %}
 {% block content %}
-<h1>Ranking das mais votadas</h1>
+<div class="row justify-content-center">
+<h1 class="text-center">Ranking das mais votadas</h1>
 {% if object_list %}
-    <ul class="list-group list-group-flush">
+<table class="table w-75">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Questão</th>
+        <th scope="col">Votos</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for questoes in object_list %}
-        <li class="list-group-item lead">
-                {{ questoes.pergunta }}
-                {{ questoes.num_respostas }}
-        </li>
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ questoes.pergunta }}</td>
+            <td>{{ questoes.total_votos }}</td>
+        </tr>   
     {% endfor %}
-    </ul>
+    </tbody>
+    </table>
 {% else %}
     <p>Nao tem questoes salvas</p>
 {% endif %}
+</div>
 {% endblock %}

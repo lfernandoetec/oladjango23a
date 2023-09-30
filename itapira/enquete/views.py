@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Questao, Resposta
+from django.db.models import Sum
 
 
 # Create your views here.
@@ -15,6 +16,10 @@ class IndexView(generic.ListView):
 class RankingView(generic.ListView):
     model = Questao
     template_name = 'enquete/ranking.html'
+
+    def get_queryset(self):
+        # Annotate the queryset with the sum of votes for each question
+        return Questao.objects.annotate(total_votos=Sum('resposta__votos')).order_by('-total_votos')
 
 class DetalheView(generic.DetailView):
     model = Questao

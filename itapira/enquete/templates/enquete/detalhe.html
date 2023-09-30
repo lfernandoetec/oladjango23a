@@ -3,7 +3,7 @@
 <form action="{% url 'voto' questao.id %}" method="post">
 {% csrf_token %}
     <div class="mb-3">
-        <h1>{{ questao.pergunta }}</h1>
+        <h1 class="text-center">{{ questao.pergunta }}</h1>
     </div>
     {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>

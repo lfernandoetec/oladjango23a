@@ -1,6 +1,6 @@
 {% extends "enquete/base.html" %}
 {% block content %}
-<h1>{{ questao.pergunta }}</h1>
+<h1 class="text-center">{{ questao.pergunta }}</h1>
 
 <ul class="list-group list-group-flush">
 {% for respostas in questao.resposta_set.all %}
